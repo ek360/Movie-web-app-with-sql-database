@@ -1,0 +1,28 @@
+<nav id="nav">
+  <img id="logo" src="{{ url_for('static', filename='movie_reel.png') }}" />
+
+  <h2 id="nav-header">
+    {% if 'username' in session %}{{ session['username'] }} {% endif %}
+  </h2>
+  {% if 'username' not in session %}
+  <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Sign up</a>
+  <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
+  {% endif %}
+
+  <h3>
+    <a class="btn-nav" href="{{ url_for('home_bp.home') }}">Home</a>
+  </h3>
+
+  <div>
+      <a class="btn-nav" href="{{ url_for('movies_bp.movies') }}">
+        Browse by ranking
+      </a>
+  </div>
+
+  {% if 'username' in session %}
+  <div id="nav-footer">
+    <a class="btn-nav" href="{{ url_for('authentication_bp.logout') }}">Logout</a>
+  </div>
+  {% endif %}
+
+</nav>
