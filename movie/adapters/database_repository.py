@@ -90,7 +90,7 @@ class SqlAlchemyRepository(AbstractRepository):
     def get_user(self, username) -> User:
         user = None
         try:
-            user = self._session_cm.session.query(User).filter_by(__user_name=username).one()
+            user = self._session_cm.session.query(User).filter_by(__username=username).one()
         except NoResultFound:
             # Ignore any exception and return None.
             pass
@@ -211,19 +211,17 @@ def populate(engine: Engine, data_path: str):
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
     cursor.executemany(insert_movies, article_record_generator(os.path.join(data_path, 'Data1000Movies.csv')))
 
-
     insert_users = """
         INSERT INTO users (
         id, username, password)
         VALUES (?, ?, ?)"""
     cursor.executemany(insert_users, generic_generator(os.path.join(data_path, 'users.csv'), process_user))
 
-
-    #insert_reviews = """
+    # insert_reviews = """
     #    INSERT INTO reviews (
     #    id, user_id, article_id, comment, timestamp)
     #    VALUES (?, ?, ?, ?, ?)"""
-    #cursor.executemany(insert_reviews, generic_generator(os.path.join(data_path, 'reviews.csv')))
+    # cursor.executemany(insert_reviews, generic_generator(os.path.join(data_path, 'reviews.csv')))
 
     conn.commit()
     conn.close()

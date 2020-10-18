@@ -45,7 +45,7 @@ movies = Table(
 
 def map_model_to_tables():
     mapper(User, users, properties={
-        '__user_name': users.c.username,
+        '__username': users.c.username,
         '__password': users.c.password,
         '__comments': relationship(Review, backref='_user')
     })
