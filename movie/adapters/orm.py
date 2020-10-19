@@ -39,6 +39,11 @@ movies = Table(
     Column('runtime', Integer, autoincrement=True),
     Column('metascore', String(255), nullable=False),
     Column('rating', Integer, autoincrement=True),
+    Column('genre', String(255), nullable=False),
+    Column('actors', String(255), nullable=False),
+    Column('votes', Integer),
+    Column('revenue', Integer)
+
 
 )
 
@@ -53,7 +58,7 @@ def map_model_to_tables():
         '_comment': reviews.c.comment,
         '_timestamp': reviews.c.timestamp
     })
-    movies_mapper = mapper(Movie, movies, properties={
+    mapper(Movie, movies, properties={
         'rank': movies.c.rank,
         'title': movies.c.title,
         'description': movies.c.description,
