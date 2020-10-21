@@ -90,11 +90,10 @@ class SqlAlchemyRepository(AbstractRepository):
     def get_user(self, username) -> User:
         user = None
         try:
-            user = self._session_cm.session.query(User).filter_by(__username=username).one()
+            user = self._session_cm.session.query(User).filter_by(user_name=username).one()
         except NoResultFound:
             # Ignore any exception and return None.
             pass
-
         return user
 
     def add_movie(self, movie: Movie):
