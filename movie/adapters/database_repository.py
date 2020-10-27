@@ -216,11 +216,11 @@ def populate(engine: Engine, data_path: str):
         VALUES (?, ?, ?)"""
     cursor.executemany(insert_users, generic_generator(os.path.join(data_path, 'users.csv'), process_user))
 
-    # insert_reviews = """
-    #    INSERT INTO reviews (
-    #    id, user_id, article_id, comment, timestamp)
+    #insert_reviews = """
+    #   INSERT INTO reviews (
+    #   id, user, movie, review, timestamp)
     #    VALUES (?, ?, ?, ?, ?)"""
-    # cursor.executemany(insert_reviews, generic_generator(os.path.join(data_path, 'reviews.csv')))
+    #cursor.executemany(insert_reviews, generic_generator(os.path.join(data_path, 'reviews.csv')))
 
     conn.commit()
     conn.close()

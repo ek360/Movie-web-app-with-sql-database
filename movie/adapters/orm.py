@@ -23,9 +23,9 @@ users = Table(
 reviews = Table(
     'reviews', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('user_id', ForeignKey('users.id')),
-    Column('article_id', ForeignKey('movies.rank')),
-    Column('comment', String(1024), nullable=False),
+    Column('user', ForeignKey('users.id')),
+    Column('movie', ForeignKey('movies.rank')),
+    Column('review', String(1024), nullable=False),
     Column('timestamp', DateTime, nullable=False)
 )
 
@@ -55,7 +55,7 @@ def map_model_to_tables():
         'reviews': relationship(Review, backref='_user')
     })
     mapper(Review, reviews, properties={
-        '_comment': reviews.c.comment,
+        'review': reviews.c.review,
         '_timestamp': reviews.c.timestamp
     })
     mapper(Movie, movies, properties={
