@@ -14,7 +14,7 @@ A Web application that demonstrates use of Python's Flask framework. The applica
 **Installation via requirements.txt**
 
 ```shell
-$ cd Movie-Web-app
+$ cd Movie-web-app-with-sql-database
 $ py -3 -m venv venv
 $ venv\Scripts\activate
 $ pip install -r requirements.txt
